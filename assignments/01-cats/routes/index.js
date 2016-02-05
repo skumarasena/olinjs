@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var db = require('../fakeDatabase');
 
-//function that constructs and returns lizard object
+//function that constructs and returns cat object
 function Cat(name, age, color){
   var cat = {
     name: name,
@@ -12,23 +12,22 @@ function Cat(name, age, color){
   return cat;
 }
 
-//get all lizard names
+//get all cat names
 router.get('/', function(req, res, next){
   var cats = db.getAll();
-  var msg = "Cat names are: ";
-  cats.forEach(function(cat){
-    msg = msg + cat.name + ",";
-  })
 
+  // Love the use of the compare function!
   cats.sort(function(a, b) {
     return a.age - b.age;
   });
 
   res.render("home", {allcats: cats});
-  console.log(msg);
+
+  // It looks to me like "msg" was just a debugging tool -- make sure
+  // you clear those out before you publish your code
 });
 
-// create new lizard named Bob
+// create new cat
 router.get('/new', function(req, res, next) {
   var catnames = ['Anne', 'Sam', 'Tenzin', 'Jeff', 'Emily', 'Jennifer'];
   var catname = catnames[Math.floor(Math.random()*catnames.length)];
@@ -50,6 +49,8 @@ router.get('/bycolor/:color', function(req, res, next) {
   var cats = db.getAll();
 
   var cats_color = [];
+  // Check out the .filter method built into Array -- it works like .sort
+  // and does exactly what you're doing below
   cats.forEach(function(cat) {
     if (cat.color == sortcolor) cats_color.push(cat);
   });
