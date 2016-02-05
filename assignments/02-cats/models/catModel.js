@@ -7,3 +7,5 @@ var catSchema = mongoose.Schema({
 });
 
 module.exports = mongoose.model("cat", catSchema); 
+// This looks great!
+// What do you think you'd do if you wanted to let cats to have multiple colors?
