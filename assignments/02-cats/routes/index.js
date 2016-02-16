@@ -73,7 +73,7 @@ router.get('/bycolor/:color', function(req, res, next) {
 
 // });
 
-router.get('/best/', function(req, res, next) {
+router.get('/best', function(req, res, next) { // :)
 
   Cat.find({$or: [{name:'Sam'}, {age: {$gt:9}}]}, function(err, cats) {
       cats.sort(function(a, b) {
@@ -87,7 +87,19 @@ router.get('/best/', function(req, res, next) {
 });
 
 router.get('/delete/old', function(req, res, next) {
-  //var cats = db.getAll();
+  /*
+  You mentioned that you didn't get remove() to work -- how were you trying to use it?
+  It looks like the remove() method has been in flux over the past couple Mongoose versions -- 
+  in the past you needed to do a find query first, and just recently they've added support for
+  Model.remove({key: value}, callback)... and I'm not sure if they deprecated the old way when
+  they did that. Maybe it was a Mongoose versioning issue?
+
+  I'm looking at this StackOverflow thread...
+    http://stackoverflow.com/questions/5809788/how-do-i-remove-documents-using-node-js-mongoose/10266789#10266789
+  ...some interesting discussion of various ways to remove documents.
+
+  If you're removing exactly one item (which you are) this is how I'd do it, though.
+  */
 
   Cat.findOneAndRemove().sort('-age').exec(function(err, oldest) {
     if (err) console.log('Error deleting cat');
