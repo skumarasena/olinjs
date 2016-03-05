@@ -6,7 +6,8 @@ var User = require('../models/userModel.js')
 
 
 
-
+// As I mentioned in a comment in app.js, definetely work with console.logs to debug, but when you push 
+// try to remove those statements.
 router.get('/home', function(req, res, next){
   Twote.find({}).sort({datetime: -1}).exec(function(err, twotes) {
     User.find({}).sort({name: -1}).exec(function(err, users) {
