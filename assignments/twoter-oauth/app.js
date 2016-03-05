@@ -52,6 +52,7 @@ passport.use(new LocalStrategy(
       }
       if (!err && user !== null) {
         if(!user.verifyPassword(password, user)) {
+          // in general don't have logs in master/production code
           console.log('Fail. Try again, nub.')
           done(null, false);
         } else {
@@ -77,6 +78,11 @@ passport.use(new LocalStrategy(
 ));
 
 
+// Instead of handling the callbacks for routes like
+// "/account". "/logout" etc. in app.js, re-route them
+// to index under ./routes and build there your API 
+// architecture. Now you have some functionality here and some
+// in your ./routes/index.js file which is not best practice :)
 app.get('/', function(req, res) {
     res.redirect('/home')
 })

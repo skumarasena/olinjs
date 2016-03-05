@@ -1,6 +1,8 @@
 
 var mongoose = require('mongoose');
 
+// I love the references to the mongooseSchema of twotters in the list of twotes
+// declaration, nice!
 var userSchema = mongoose.Schema({
   oauthID: Number,
   name: String,
