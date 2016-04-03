@@ -34,9 +34,6 @@ app.get('/createOrder', order);
 app.get('/addItemToOrder', order);
 
 app.get('/kitchen', kitchen);
-//This should be a POST route, that is why your test is failing
-//This what the tests are for :P
-
 app.get('/orderComplete', kitchen);
 
 // app.get('/', index.home);
