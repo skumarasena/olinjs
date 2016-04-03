@@ -30,6 +30,8 @@ describe("The app", function() {
       });
   });
 
+  //Tests failing is not a reason to remove them :P
+  //
   //editIngredient doesn't seem to work, nor does removeIngredient...
   //seems you can make an empty ingredient, but you can't edit or remove.
 
@@ -39,6 +41,7 @@ describe("The app", function() {
       .expect(200, done);
   });
 
+  //Why not?
   //addItemToOrder doesn't work
   //createOrder doesn't work
 
@@ -52,7 +55,7 @@ describe("The app", function() {
 
   //orderComplete doesn't work!
   //majority of AJAX stuff works, but doesn't pass tests -- why?
-
+  // It returns a 404 like it should, the issue is with your routing not your testing
   //   it('should return 200 OK on POST /orderComplete', function(done) {
   //   request(app)
   //     .post('/orderComplete')
